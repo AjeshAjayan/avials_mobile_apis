@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  postgresDevDB:
+    image: postgres
+    environment:
+      - POSTGRES_PORT=5432
+      - POSTGRES_HOST=avials.clob1x2voxhn.ap-south-1.rds.amazonaws.com
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=avials
+      - POSTGRES_PASSWORD=avials123
+      - SECRET_KEY=6920=k3s_@z3fvh!#n^25(g-gwrzx$uv!6t+g*_c_(%01sys1(
+    ports:
+      - "5433:5432"
+    volumes:
+      - .:/opt/services/postgresdb
+    network_mode: "host"
+  django:
+    container_name: avials_mobile_apis
+    build: .
+    command: ./run_local.sh
+    volumes:
+      - .:/opt/services/djangoapp/src
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - postgresDevDB
