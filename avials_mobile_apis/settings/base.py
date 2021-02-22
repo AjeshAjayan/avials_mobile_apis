@@ -39,7 +39,9 @@ DJANGO_COMMON_APPS = [
 ]
 
 ADDITIONAL_APPS = [
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken',
+    'managers_auth',
 ]
 
 INSTALLED_APPS = DJANGO_COMMON_APPS + ADDITIONAL_APPS
@@ -59,7 +61,7 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
 }
 
 
@@ -136,4 +138,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
